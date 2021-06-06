@@ -2,6 +2,7 @@ name: FeatureTest
 on:
   push:
     branches:  [feature/*] 
+  workflow_dispatch:
 # Cada vez que ejecutemos un push en cualquier rama feature 
 jobs:
   build:
