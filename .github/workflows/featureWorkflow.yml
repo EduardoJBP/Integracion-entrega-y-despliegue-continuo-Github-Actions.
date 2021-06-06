@@ -1,0 +1,25 @@
+name: FeatureTest 
+on:
+  push:
+    branches:  [feature/*] 
+# Cada vez que ejecutemos un push en cualquier rama feature
+jobs:
+  build:
+    # El test lo haremos en tres maquinas distintas en ubuntu, windows y macos
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@v2
+      - name: JDK 11
+        uses: actions/setup-java@v1
+        with: 
+          java-version: 11
+      - name: Compilamos el proyecto
+        run: mvn compile
+      - name: Ejecutar UnitaryTest
+        run: mvn -B '-Dtest=es.urjc.code.daw.library.unitary.BookServiceUnitaryTest' test
+      - name: Ejecutar RestTest
+        run: mvn -B '-Dtest=es.urjc.code.daw.library.e2e.rest.RestTest' test
