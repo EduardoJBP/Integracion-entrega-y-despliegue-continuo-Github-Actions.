@@ -1,4 +1,4 @@
-name: Publish_in_DockerHub
+name: Publish_in_DockerHub.
 
 on:
   schedule:
