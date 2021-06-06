@@ -1,0 +1,31 @@
+name: ReleaseTest
+
+# Controls when the action will run. 
+on:
+  push:
+    branches:  [release/*] 
+
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - uses: actions/checkout@v2
+      - name: JDK 11
+        uses: actions/setup-java@v1
+        with: 
+          java-version: 11
+      - name: Compilamos el proyecto
+        run: mvn compile
+      - name: Ejecutar UnitaryTest
+        run: mvn -B '-Dtest=es.urjc.code.daw.library.unitary.BookServiceUnitaryTest' test
+      - name: Ejecutar RestTest
+        run: mvn -B '-Dtest=es.urjc.code.daw.library.e2e.rest.RestTest' test
