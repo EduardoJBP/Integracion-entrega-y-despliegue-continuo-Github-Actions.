@@ -2,7 +2,7 @@ name: FeatureTest
 on:
   push:
     branches:  [feature/*] 
-# Cada vez que ejecutemos un push en cualquier rama feature
+# Cada vez que ejecutemos un push en cualquier rama feature 
 jobs:
   build:
     # El test lo haremos en tres maquinas distintas en ubuntu, windows y macos
