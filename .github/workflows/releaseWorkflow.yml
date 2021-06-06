@@ -1,10 +1,10 @@
 name: ReleaseTest
 
-# Controls when the action will run. 
 on:
   push:
     branches:  [release/*] 
-
+  workflow_dispatch:
+  
 jobs:
   # This workflow contains a single job called "build"
   build:
