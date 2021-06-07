@@ -1,14 +1,16 @@
 name: Publish_in_DockerHub.
-
+# Cada noche se ejecutara este workflow
 on:
   schedule:
     - cron:  '0 0 * * *'
+    #Ejecutara el test todos los dias a las 00:00 UTC
   workflow_dispatch:
 
 jobs:
+#Crearemos dos jobs, con el primero pasaremos todos los test y construiremos el jar correspondiente
   build:
     name: Build Java application
-    runs-on: [windows-latest]
+    runs-on: [ubuntu-latest]
     steps:
     - name: Clone repository
       uses: actions/checkout@v2
@@ -29,7 +31,7 @@ jobs:
       with:
         name: target
         path: target
-
+#En el ultimo job publicaremos la imagen en docker_hub con el nombre de nuestro usuario y dev- la fecha actual 
   publish_in_dockerhub:
     name: Publish in DockerHub
     runs-on: ubuntu-latest
