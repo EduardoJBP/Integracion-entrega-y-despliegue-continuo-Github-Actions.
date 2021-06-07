@@ -6,12 +6,8 @@ on:
 # Cada vez que ejecutemos un push en cualquier rama feature 
 jobs:
   build:
-    # El test lo haremos en tres maquinas distintas en ubuntu, windows y macos
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+    # El test lo haremos en ubuntu
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: JDK 11
