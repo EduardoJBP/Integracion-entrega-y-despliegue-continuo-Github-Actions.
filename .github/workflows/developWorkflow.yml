@@ -1,21 +1,18 @@
 name: DevelopTest
 
-# Controls when the action will run . 
 on:
-  # Triggers the workflow on push or pull request events but only for the develop branch
+  # Cada vez que ejecutemos un push subiendo el commit de la rama develop 
   push:
     branches: [ develop ]
 
-  # Allows you to run this workflow manually from the Actions tab
+  # Permite activarlo de manera manual, para probar la funcionalidad
   workflow_dispatch:
 
 jobs:
-  # This workflow contains a single job called "build"
   build:
-
-    runs-on: windows-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    runs-on: ubuntu-latest
+    # Ejecutamos el job build en una máquina ubuntu 
+    # En los distintos pasos cargaremos la version de java, compilaremos el proyecto y ejecutaremos los test
     steps:
       - uses: actions/checkout@v2
       - name: JDK 11
