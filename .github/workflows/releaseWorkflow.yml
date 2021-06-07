@@ -2,21 +2,14 @@ name: ReleaseTest
 
 on:
   push:
+  #El workflow se ejecutará al hacer un push en cualquier rama release
     branches:  [release/*] 
   workflow_dispatch:
   
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    runs-on: ubuntu-latest
+#Ejecutaremos los tests unitarios y rest
     steps:
       - uses: actions/checkout@v2
       - name: JDK 11
