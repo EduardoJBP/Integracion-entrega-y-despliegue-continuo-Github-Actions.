@@ -1,8 +1,8 @@
 name: Publish_in_DockerHub.
 # Cada noche se ejecutara este workflow
 on:
-  schedule:
-    - cron:  '0 0 * * *'
+  # schedule:
+   #  - cron:  '0 0 * * *'
     #Ejecutara el test todos los dias a las 00:00 UTC
   workflow_dispatch:
 
